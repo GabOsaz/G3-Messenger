@@ -11,7 +11,7 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() =>
-    console.log("successfully connected on " + process.env.DB_USERNAME)
+    console.log("Database successfully connected on " + process.env.DB_USERNAME)
   )
   .catch(err => console.log(err));
 
