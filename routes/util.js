@@ -20,13 +20,12 @@ const hashPassword = password => {
 
 const createToken = user => {
     // Sign the JWT
-    if (!user.role) {
-      throw new Error('No user role specified');
-    }
+    // if (!user.role) {
+    //   throw new Error('No user role specified');
+    // }
     return jwt.sign(
       {
-        sub: user._id,
-        email: user.email
+        sub: user.id
       },
       process.env.JWT_SECRET,
       { algorithm: 'HS256', expiresIn: '1h' }

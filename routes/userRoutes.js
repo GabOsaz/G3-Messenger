@@ -69,13 +69,11 @@ router.post('/api/user/authenticate', async (req, res) => {
     );
 
     if (passwordValid) {
-      const { password, ...rest } = user;
-      const userInfo = Object.assign({}, { ...rest });
+      // const { password, ...rest } = user;
+      // const userInfo = Object.assign({}, { ...rest });
+      const userId = { id: user._id};
 
-      const token = createToken(userInfo);
-
-      // const decodedToken = jwtDecode(token);
-      // const expiresAt = decodedToken.exp;
+      const token = createToken(userId);
 
       res.cookie('token', token, {
         httpOnly: true
@@ -83,8 +81,7 @@ router.post('/api/user/authenticate', async (req, res) => {
 
       res.json({
         message: 'Authentication successful!',
-        token,
-        userInfo
+        token
       });
     } else {
       res.status(403).json({
@@ -98,6 +95,5 @@ router.post('/api/user/authenticate', async (req, res) => {
       .json({ message: 'Something went wrong.' });
   }
 });
-
 
 export default router;
